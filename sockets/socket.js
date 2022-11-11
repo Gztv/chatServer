@@ -20,7 +20,7 @@ io.on('connection', client => {
         
         await saveMessage(payload);
 
-        io.to(payload.to).emit('private-msg');
+        io.to(payload.to).emit('private-msg',payload);
     });
 
     client.on('disconnect', () => {
