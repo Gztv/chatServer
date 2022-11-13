@@ -4,7 +4,7 @@ const { comprobJWT } = require('../middlewares');
 
 
 // Mensajes de Sockets
-io.on('connection', client => {
+io.on('connection', (client) => {
     console.log('Cliente conectado');
     
     const [isAuth, user] = comprobJWT(client.handshake.headers['authorization']);
@@ -15,12 +15,12 @@ io.on('connection', client => {
     userConnected(user['uid']);
 
     client.join(user['uid']);
-
+    
     client.on('private-msg',async(payload)=>{
         
         await saveMessage(payload);
-
-        io.to(payload.to).emit('private-msg',payload);
+        
+        io.to(Number(payload.tho)).emit('private-msg',payload);
     });
 
     client.on('disconnect', () => {
@@ -28,4 +28,4 @@ io.on('connection', client => {
         userDisconnected(user['uid']);
     });
 
-});
+}); 

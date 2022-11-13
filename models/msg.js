@@ -6,7 +6,7 @@ const MessageSchema = Schema(
             type: String,
             required: true
         },
-        to: {
+        tho: {
             type: String,
             required: true
         },

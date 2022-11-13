@@ -6,7 +6,7 @@ const getMessages = async(req, res) =>{
     const msgto = req.params.from;
 
     const last30msg = await Message.find({
-        $or: [{from: myId, to: msgto}, {from: msgto, to: myId} ]
+        $or: [{from: myId, tho: msgto}, {from: msgto, tho: myId} ]
     }).sort({createdAt :'desc'}).limit(30);
 
     res.json({
